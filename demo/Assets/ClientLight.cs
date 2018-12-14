@@ -1,12 +1,14 @@
 using System.Collections.Concurrent;
 using System.Threading;
+
 using NetMQ;
-using UnityEngine;
 using NetMQ.Sockets;
+
+using UnityEngine;
 
 public class ZMQListener{
 	private readonly Thread listener;
-	private bool listenerCancelled;
+	private bool listenerStopped;
 	public delegate void MessageDelegate(string message);
 	private readonly MessageDelegate msgDelegate;
 	private readonly ConcurrentQueue<string> msgQueue = new ConcurrentQueue<string>();
@@ -22,7 +24,7 @@ public class ZMQListener{
 			subSocket.Options.ReceiveHighWatermark = 1000;
 			subSocket.Connect("tcp://localhost:12345");
 			subSocket.Subscribe("");
-			while(!listenerCancelled){
+			while(!listenerStopped){
 				string frameString;
 				if(!subSocket.TryReceiveFrameString(out frameString)){
 					continue;
@@ -52,13 +54,13 @@ public class ZMQListener{
 
     public void Start()
     {
-        listenerCancelled = false;
+        listenerStopped = false;
         listener.Start();
     }
 
     public void Stop()
     {
-        listenerCancelled = false;
+        listenerStopped = true;
         listener.Join();
     }
 }
