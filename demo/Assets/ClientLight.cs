@@ -1,3 +1,5 @@
+using System;
+
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -20,19 +22,26 @@ public class ZMQListener{
 
 	private void ListenerWorker(){
 		AsyncIO.ForceDotNet.Force();
-		using (var subSocket = new SubscriberSocket()){
-			subSocket.Options.ReceiveHighWatermark = 1000;
-			subSocket.Connect("tcp://localhost:12345");
-			subSocket.Subscribe("");
+
+		var respSocket = new ResponseSocket(); 
+
+		try{
+			respSocket.Bind("tcp://*:5558");
+
 			while(!listenerStopped){
 				string frameString;
-				if(!subSocket.TryReceiveFrameString(out frameString)){
+				if(!respSocket.TryReceiveFrameString(out frameString)){
 					continue;
 				}
 				Debug.Log(frameString);
 				msgQueue.Enqueue(frameString);
+				respSocket.SendFrame("Command " + frameString + "received. Will Execute.");
 			}
-			subSocket.Close();
+			respSocket.Close();
+		}finally{ // Destructor (GC)
+			if(respSocket != null){
+				((IDisposable)respSocket).Dispose();
+			}
 		}
 		NetMQConfig.Cleanup();
 	}
@@ -41,25 +50,21 @@ public class ZMQListener{
 
         while (!msgQueue.IsEmpty){
             string message;
-            if (msgQueue.TryDequeue(out message))
-            {
+            if (msgQueue.TryDequeue(out message)){
                 msgDelegate(message);
             }
-            else
-            {
+            else{
                 break;
             }
         }
     }
 
-    public void Start()
-    {
+    public void Start(){
         listenerStopped = false;
         listener.Start();
     }
 
-    public void Stop()
-    {
+    public void Stop(){
         listenerStopped = true;
         listener.Join();
     }
