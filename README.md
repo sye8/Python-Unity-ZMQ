@@ -1,6 +1,6 @@
 # ZMQ Connection Between Python and Unity
 
-## Python -> Unity
+## Python <-> Unity
 
 ### Note
 
@@ -10,6 +10,6 @@ For the C# code to compile, set editor to .NET 4.6
 
 ### Execute
 
-Run `server.py`, then start game mode of `demo.unity`
+Run `request.py`, then start game mode of `demo.unity`
 
-Lighting on the sphere will flash with 1 second interval
+Lighting on the sphere will flash with 1 second interval, according to the command "on" or "off" sent from the Python script `request.py`. Unity will send back acknowledgement that it has received the command, which `request.py` will print.
