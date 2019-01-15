@@ -1,5 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+using NetMQ;
+using NetMQ.Sockets;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +20,12 @@ public class Request : MonoBehaviour {
 	}
 
 	private void InputFieldHandler(string txt){
-		print(txt);
+		using (var reqSocket = new RequestSocket ("tcp://localhost:5556")) {
+			reqSocket.SendFrame(txt);
+			Debug.Log("Send: " + txt);
+
+			var msg = reqSocket.ReceiveFrameString();
+			Debug.Log("Receive: " + msg);
+		}
 	}
 }

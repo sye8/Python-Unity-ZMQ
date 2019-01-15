@@ -17,3 +17,7 @@ Lighting on the sphere will flash with 1 second interval, according to the comma
 For the C# code to compile, set editor to .NET 4.6
 
 `File -> Build Settings -> Player Settings... -> Other Settings -> Scripting Runtime Version -> Experimental (.NET 4.6 Equivalent)`
+
+## Acknowledgement
+
+Compiled AsyncIO and NetMQ and Multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
