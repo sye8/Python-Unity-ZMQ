@@ -10,7 +10,11 @@ Lighting on the sphere will flash with 1 second interval, according to the comma
 
 ## Unity Request, Python Respond
 
+### Execute
 
+Under `UnityRequester`, run `respond.py`, then start game mode of `demo.unity`
+
+After typing into the input field and hitting enter, the message will be sent to `respond.py` and unity will wait for a response for 3 seconds. If there is a response, it will be printed to console
 
 ## Note
 
@@ -20,4 +24,4 @@ For the C# code to compile, set editor to .NET 4.6
 
 ## Acknowledgement
 
-Compiled AsyncIO and NetMQ and Multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
+Compiled AsyncIO and NetMQ and multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
