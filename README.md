@@ -12,7 +12,7 @@ Lighting on the sphere will flash with 1 second interval, according to the comma
 
 
 
-### Note
+## Note
 
 For the C# code to compile, set editor to .NET 4.6
 

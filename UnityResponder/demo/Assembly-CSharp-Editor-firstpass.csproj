@@ -191,7 +191,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>/Users/yesifan/hyperion/PyUnityZMQDemo/demo/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -284,10 +284,10 @@
  <HintPath>/Applications/Unity/PlaybackEngines/Facebook/UnityEditor.Facebook.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="AsyncIO">
- <HintPath>/Users/yesifan/hyperion/PyUnityZMQDemo/demo/Assets/AsyncIO.dll</HintPath>
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/AsyncIO.dll</HintPath>
  </Reference>
  <Reference Include="NetMQ">
- <HintPath>/Users/yesifan/hyperion/PyUnityZMQDemo/demo/Assets/NetMQ.dll</HintPath>
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/NetMQ.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Users/yesifan/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
