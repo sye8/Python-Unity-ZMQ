@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using NetMQ;
@@ -6,6 +7,8 @@ using NetMQ.Sockets;
 
 using UnityEngine;
 using UnityEngine.UI;
+
+
 
 public class Request : MonoBehaviour {
 
@@ -24,8 +27,10 @@ public class Request : MonoBehaviour {
 			reqSocket.SendFrame(txt);
 			Debug.Log("Send: " + txt);
 
-			var msg = reqSocket.ReceiveFrameString();
-			Debug.Log("Receive: " + msg);
+			string msg;
+			if (reqSocket.TryReceiveFrameString(TimeSpan.FromSeconds(3), out msg)) {
+				Debug.Log("Receive: " + msg);
+			}
 		}
 	}
 }
