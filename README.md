@@ -14,7 +14,9 @@ Lighting on the sphere will flash with 1 second interval, according to the comma
 
 Under `UnityRequester`, run `respond.py`, then start game mode of `demo.unity`
 
-After typing into the input field and hitting enter, the message will be sent to `respond.py` and unity will wait for a response for 3 seconds. If there is a response, it will be printed to console
+After typing into the input field and hitting enter, the message will be sent to `respond.py` and unity will wait for a response for 3 seconds. If there is a response, it will be printed to console. 
+
+The requester is run asynchronously so the UI won't be blocked.
 
 ## Note
 
