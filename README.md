@@ -16,6 +16,12 @@ Under `UnityRequester`, run `respond.py`, then start game mode of `demo.unity`
 
 After typing into the input field and hitting enter, the message will be sent to `respond.py` and unity will wait for a response for 3 seconds. If there is a response, it will be printed to console. 
 
+Commands that the responder takes:
+
+- ping: Reply "ping back from server"
+
+- gib [object]: Spawns [object] in scene. Currently supports "sphere" and "cube"
+
 The requester is run asynchronously so the UI won't be blocked.
 
 ## Note

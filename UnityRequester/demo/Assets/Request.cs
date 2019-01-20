@@ -17,10 +17,12 @@ public class ParallelRequester{
 
 	private string sendMsg = "";
 
-	public delegate void MessageDelegate(string message);
+	public delegate void InstantiateDelegate(string obj);
+	private readonly InstantiateDelegate instantiateDelegate;
 
-	public ParallelRequester(){
+	public ParallelRequester(InstantiateDelegate instDelegate){
 		requester = new Thread(RequesterWorker);
+		instantiateDelegate = instDelegate;
 	}
 
 	private void RequesterWorker(){
@@ -38,6 +40,7 @@ public class ParallelRequester{
 					string msg;
 					if (reqSocket.TryReceiveFrameString(TimeSpan.FromSeconds(3), out msg)) {
 						Debug.Log("Received: " + msg);
+						instantiateDelegate(msg);
 					}
 				}
 			}
@@ -67,19 +70,39 @@ public class Request : MonoBehaviour {
 
 	public ParallelRequester requester;
 
+	public Transform spawnPos;
+	public GameObject sphere;
+	public GameObject cube;
+
+	private string spawn = "";
+
 	// Use this for initialization
 	void Start () {
 		gameObject.GetComponent<InputField>().onEndEdit.AddListener(InputFieldHandler);
-		requester = new ParallelRequester();
+		requester = new ParallelRequester(Instantiator);
 		requester.Start();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (string.Equals(spawn, "sphere")) {
+			Instantiate(sphere, spawnPos.position, spawnPos.rotation);
+			Debug.Log("Spawning a sphere");
+			spawn = "";
+		}
+		if (string.Equals(spawn, "cube")) {
+			Instantiate(cube, spawnPos.position, spawnPos.rotation);
+			Debug.Log("Spawning a cube");
+			spawn = "";
+		}
 	}
 
 	private void InputFieldHandler(string txt){
 		requester.Update(txt);
 	}
+
+	private void Instantiator(string obj){
+		spawn = obj;
+	}
+
 }
