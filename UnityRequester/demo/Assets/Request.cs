@@ -66,6 +66,18 @@ public class ParallelRequester{
 	}
 }
 
+[System.Serializable]
+public class JSONDemo
+{
+	public string name;
+	public float x;
+	public float y;
+
+	public override string ToString(){
+		return "Name: " + name + "; x: " + x + "; y: " + y;
+	}
+}
+
 public class Request : MonoBehaviour {
 
 	public ParallelRequester requester;
@@ -89,10 +101,12 @@ public class Request : MonoBehaviour {
 			Instantiate(sphere, spawnPos.position, spawnPos.rotation);
 			Debug.Log("Spawning a sphere");
 			spawn = "";
-		}
-		if (string.Equals(spawn, "cube")) {
-			Instantiate(cube, spawnPos.position, spawnPos.rotation);
-			Debug.Log("Spawning a cube");
+		}else if (string.Equals(spawn, "cube")) {
+			Instantiate (cube, spawnPos.position, spawnPos.rotation);
+			Debug.Log ("Spawning a cube");
+			spawn = "";
+		} else if (!string.Equals(spawn, "")){
+			Debug.Log(JsonUtility.FromJson<JSONDemo>(spawn));
 			spawn = "";
 		}
 	}

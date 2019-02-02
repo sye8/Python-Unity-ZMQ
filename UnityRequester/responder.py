@@ -1,8 +1,8 @@
+import random
 import sys
+import time
 
 import zmq
-
-import time
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)
@@ -26,5 +26,7 @@ while True:
             socket.send_string("gib usage: gib [object]")
     elif args[0] == "ping":
         socket.send_string("ping back from server")
+    elif args[0] == "jsonTest":
+        socket.send_string("{\"name\":\"test\",\"x\":" + str(random.uniform(-5.0, 5.0)) + ",\"y\":" + str(random.uniform(-5.0, 5.0)) + "}")
     else:
         socket.send_string("Unidentified command")
