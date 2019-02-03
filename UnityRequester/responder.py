@@ -1,6 +1,8 @@
+import json
 import random
 import sys
 import time
+import uuid
 
 import zmq
 
@@ -26,7 +28,10 @@ while True:
             socket.send_string("gib usage: gib [object]")
     elif args[0] == "ping":
         socket.send_string("ping back from server")
-    elif args[0] == "jsonTest":
-        socket.send_string("{\"name\":\"test\",\"x\":" + str(random.uniform(-5.0, 5.0)) + ",\"y\":" + str(random.uniform(-5.0, 5.0)) + "}")
+    elif args[0] == "receiveJSON":
+        testDict = {"name": str(uuid.uuid4()),
+                    "x": str(random.uniform(-5.0, 5.0)),
+                    "y": str(random.uniform(-5.0, 5.0))}
+        socket.send_string(str(json.dumps(testDict)))
     else:
         socket.send_string("Unidentified command")
