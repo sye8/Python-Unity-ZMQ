@@ -23,15 +23,15 @@ while True:
     args = msg.split()
     if args[0] == "gib":
         if len(args) > 1:
-            socket.send_string(args[1])
+            socket.send_string("Spawn " + args[1])
         else:
             socket.send_string("gib usage: gib [object]")
     elif args[0] == "ping":
         socket.send_string("ping back from server")
     elif args[0] == "receiveJSON":
-        testDict = {"name": str(uuid.uuid4()),
+        testDict = {"uuid": str(uuid.uuid4()),
                     "x": str(random.uniform(-5.0, 5.0)),
                     "y": str(random.uniform(-5.0, 5.0))}
-        socket.send_string(str(json.dumps(testDict)))
+        socket.send_string("JSON " + str(json.dumps(testDict)))
     else:
-        socket.send_string("Unidentified command")
+        socket.send_string("Error Unidentified command")

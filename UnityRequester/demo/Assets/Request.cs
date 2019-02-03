@@ -17,12 +17,12 @@ public class ParallelRequester{
 
 	private string sendMsg = "";
 
-	public delegate void InstantiateDelegate(string obj);
-	private readonly InstantiateDelegate instantiateDelegate;
+	public delegate void MessageDelegate(string obj);
+	private readonly MessageDelegate messageDelegate;
 
-	public ParallelRequester(InstantiateDelegate instDelegate){
+	public ParallelRequester(MessageDelegate msgDelegate){
 		requester = new Thread(RequesterWorker);
-		instantiateDelegate = instDelegate;
+		messageDelegate = msgDelegate;
 	}
 
 	private void RequesterWorker(){
@@ -40,7 +40,7 @@ public class ParallelRequester{
 					string msg;
 					if (reqSocket.TryReceiveFrameString(TimeSpan.FromSeconds(3), out msg)) {
 						Debug.Log("Received: " + msg);
-						instantiateDelegate(msg);
+						messageDelegate(msg);
 					}
 				}
 			}
@@ -69,12 +69,12 @@ public class ParallelRequester{
 [System.Serializable]
 public class JSONDemo
 {
-	public string name;
+	public string uuid;
 	public float x;
 	public float y;
 
 	public override string ToString(){
-		return "Name: " + name + "; x: " + x + "; y: " + y;
+		return "UUID: " + uuid + "; x: " + x + "; y: " + y;
 	}
 }
 
@@ -86,28 +86,49 @@ public class Request : MonoBehaviour {
 	public GameObject sphere;
 	public GameObject cube;
 
-	private string spawn = "";
+	private string reply = "";
 
 	// Use this for initialization
 	void Start () {
 		gameObject.GetComponent<InputField>().onEndEdit.AddListener(InputFieldHandler);
-		requester = new ParallelRequester(Instantiator);
+		requester = new ParallelRequester(MsgDelegate);
 		requester.Start();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (string.Equals(spawn, "sphere")) {
-			Instantiate(sphere, spawnPos.position, spawnPos.rotation);
-			Debug.Log("Spawning a sphere");
-			spawn = "";
-		}else if (string.Equals(spawn, "cube")) {
-			Instantiate (cube, spawnPos.position, spawnPos.rotation);
-			Debug.Log ("Spawning a cube");
-			spawn = "";
-		} else if (!string.Equals(spawn, "")){
-			Debug.Log(JsonUtility.FromJson<JSONDemo>(spawn));
-			spawn = "";
+		if (!string.Equals (reply, "")) {
+			int spaceIndex = reply.IndexOf (' ');
+			string type = reply.Substring (0, spaceIndex);
+			string args = reply.Substring (spaceIndex + 1);
+
+			switch (type) {
+				case "Spawn":
+					switch (args) {
+					case "sphere":
+						Instantiate (sphere, spawnPos.position, spawnPos.rotation);
+						Debug.Log ("Spawning a sphere");
+						break;
+					case "cube":
+						Instantiate (cube, spawnPos.position, spawnPos.rotation);
+						Debug.Log ("Spawning a cube");
+						break;
+					default:
+						Debug.Log ("Spawn: Unrecognized object");
+						break;
+					}
+					break;
+				case "JSON":
+					Debug.Log (JsonUtility.FromJson<JSONDemo> (args));
+					break;
+				case "Error":
+					Debug.Log ("ResponderError: " + args);
+					break;
+				default:
+					Debug.Log (reply);
+					break;
+				}
+			reply = "";
 		}
 	}
 
@@ -115,8 +136,8 @@ public class Request : MonoBehaviour {
 		requester.Update(txt);
 	}
 
-	private void Instantiator(string obj){
-		spawn = obj;
+	private void MsgDelegate(string msg){
+		reply = msg;
 	}
 
 }
