@@ -10,6 +10,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+[System.Serializable]
+public class JSONDemo
+{
+	public string uuid;
+	public double x;
+	public double y;
+
+	public override string ToString(){
+		return "UUID: " + uuid + "; x: " + x + "; y: " + y;
+	}
+}
+
 public class ParallelRequester{
 	private readonly Thread requester;
 
@@ -33,13 +45,23 @@ public class ParallelRequester{
 		try{
 			while(!requesterStopped){
 				if(!string.Equals(sendMsg, "")){
-					reqSocket.SendFrame(sendMsg);
-					Debug.Log("Send: " + sendMsg);
+					if(!string.Equals(sendMsg, "sendJSON")){
+						reqSocket.SendFrame(sendMsg);
+						Debug.Log("Send: " + sendMsg);
+					}else{
+						JSONDemo toSend = new JSONDemo();
+						toSend.uuid = System.Guid.NewGuid().ToString();
+						System.Random random = new System.Random();
+						toSend.x = random.NextDouble() * 5;
+						toSend.y = random.NextDouble() * 5;
+						string json = JsonUtility.ToJson(toSend);
+						reqSocket.SendFrame("sendJSON " + json);
+					}
+
 					sendMsg = "";
 
 					string msg;
 					if (reqSocket.TryReceiveFrameString(TimeSpan.FromSeconds(3), out msg)) {
-						Debug.Log("Received: " + msg);
 						messageDelegate(msg);
 					}
 				}
@@ -63,18 +85,6 @@ public class ParallelRequester{
 	public void Stop(){
 		requesterStopped = true;
 		requester.Join();
-	}
-}
-
-[System.Serializable]
-public class JSONDemo
-{
-	public string uuid;
-	public float x;
-	public float y;
-
-	public override string ToString(){
-		return "UUID: " + uuid + "; x: " + x + "; y: " + y;
 	}
 }
 

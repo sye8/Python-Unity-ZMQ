@@ -33,5 +33,9 @@ while True:
                     "x": str(random.uniform(-5.0, 5.0)),
                     "y": str(random.uniform(-5.0, 5.0))}
         socket.send_string("JSON " + str(json.dumps(testDict)))
+    elif args[0] == "sendJSON":
+        receivedDict = json.loads(args[1])
+        print(receivedDict)
+        socket.send_string("Received JSON and Parsed: " + str(receivedDict))
     else:
         socket.send_string("Error Unidentified command")
