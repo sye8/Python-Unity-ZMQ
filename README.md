@@ -22,6 +22,10 @@ Commands that the responder takes:
 
 - gib [object]: Spawns [object] in scene. Currently supports "sphere" and "cube"
 
+- sendJSON: Sends a random JSON to be parsed by Python responder
+
+- receiveJSON: Request and parse a random JSON from Python responder
+
 The requester is run asynchronously so the UI won't be blocked.
 
 ## Note
