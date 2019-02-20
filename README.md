@@ -30,7 +30,7 @@ The requester is run asynchronously so the UI won't be blocked.
 
 ## Note
 
-For the C# code to compile, set editor to .NET 4.6
+For NetMQ to compile, set editor to .NET 4.6
 
 `File -> Build Settings -> Player Settings... -> Other Settings -> Scripting Runtime Version -> Experimental (.NET 4.6 Equivalent)`
 
