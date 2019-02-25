@@ -289,6 +289,9 @@
  <Reference Include="NetMQ">
  <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/NetMQ.dll</HintPath>
  </Reference>
+ <Reference Include="JetBrains.Annotations">
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/JetBrains.Annotations.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Users/yesifan/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

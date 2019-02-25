@@ -30,10 +30,12 @@ The requester is run asynchronously so the UI won't be blocked.
 
 ## Note
 
-For NetMQ to compile, set editor to .NET 4.6
+For ConcurrentQueue to be accessible, set editor to .NET 4.6
 
 `File -> Build Settings -> Player Settings... -> Other Settings -> Scripting Runtime Version -> Experimental (.NET 4.6 Equivalent)`
 
 ## Acknowledgement
 
-Compiled AsyncIO and NetMQ and multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
+Multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
+
+NetMQ for Unity is from [here](https://www.nuget.org/packages/NetMQ.Unity/)
