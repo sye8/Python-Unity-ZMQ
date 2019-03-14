@@ -51,7 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\RespondLight.cs" />
+     <Compile Include="Assets\responder.cs" />
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
  </Reference>
@@ -223,14 +223,8 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="AsyncIO">
- <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/AsyncIO.dll</HintPath>
- </Reference>
  <Reference Include="NetMQ">
  <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/NetMQ.dll</HintPath>
- </Reference>
- <Reference Include="JetBrains.Annotations">
- <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/JetBrains.Annotations.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Users/yesifan/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
@@ -240,6 +234,9 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/yesifan/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="AsyncIO">
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/AsyncIO.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
