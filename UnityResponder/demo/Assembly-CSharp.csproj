@@ -223,6 +223,9 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="AsyncIO">
+ <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/AsyncIO.dll</HintPath>
+ </Reference>
  <Reference Include="NetMQ">
  <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/NetMQ.dll</HintPath>
  </Reference>
@@ -234,9 +237,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/yesifan/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="AsyncIO">
- <HintPath>/Users/yesifan/hyperion/PythonUnityZMQDemo/UnityResponder/demo/Assets/AsyncIO.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

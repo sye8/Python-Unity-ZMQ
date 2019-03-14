@@ -4,9 +4,9 @@
 
 ### Execute
 
-Under `UnityResponder`, run `request.py`, then start game mode of `demo.unity`
+Under `UnityResponder`, start game mode of `demo.unity`, then run `request.py`
 
-Lighting on the sphere will flash with 1 second interval, according to the command "on" or "off" sent from the Python script `request.py`. Unity will send back acknowledgement that it has received the command, which `request.py` will print.
+Lighting on the sphere will flash with 1 second interval, according to the command "on" or "off" sent from the Python script `request.py`. Unity will send back the current state of the light, which `request.py` will print.
 
 ## Unity Request, Python Respond
 
@@ -30,12 +30,7 @@ The requester is run asynchronously so the UI won't be blocked.
 
 ## Note
 
-For ConcurrentQueue to be accessible, set editor to .NET 4.6
+For  `System.Threading.Tasks` to be accessible, set editor to .NET 4.6
 
 `File -> Build Settings -> Player Settings... -> Other Settings -> Scripting Runtime Version -> Experimental (.NET 4.6 Equivalent)`
 
-## Acknowledgement
-
-Multithreading structure is from [here](https://github.com/valkjsaaa/Unity-ZeroMQ-Example)
-
-NetMQ for Unity is from [here](https://www.nuget.org/packages/NetMQ.Unity/)
