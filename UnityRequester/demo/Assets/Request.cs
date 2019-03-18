@@ -33,6 +33,8 @@ public class Request : MonoBehaviour {
 
 
 	void request(){
+		AsyncIO.ForceDotNet.Force();
+
 		var socket = new RequestSocket("tcp://localhost:5556");
 
 		try{

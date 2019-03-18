@@ -16,6 +16,8 @@ public class responder : MonoBehaviour {
 
 
 	void respond(){
+		AsyncIO.ForceDotNet.Force();
+
 		var socket = new ResponseSocket("tcp://*:5558");
 
 		try{
