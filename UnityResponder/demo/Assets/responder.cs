@@ -8,14 +8,14 @@ using NetMQ;
 using NetMQ.Sockets;
 
 
-public class responder : MonoBehaviour {
+public class Responder : MonoBehaviour {
 	public Light light;
 	public bool lightIsOn = false; 
 
 	public bool responderIsStarted = false;
 
 
-	void respond(){
+	void Respond(){
 		AsyncIO.ForceDotNet.Force();
 
 		var socket = new ResponseSocket("tcp://*:5558");
@@ -37,8 +37,10 @@ public class responder : MonoBehaviour {
 			}
 		}finally{
 			if (socket != null) {
+                socket.Close();
 				((IDisposable)socket).Dispose();
-			}
+                NetMQConfig.Cleanup(true);
+            }
 		}
 	}
 
