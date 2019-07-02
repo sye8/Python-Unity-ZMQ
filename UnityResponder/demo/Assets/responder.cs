@@ -12,7 +12,7 @@ public class Responder : MonoBehaviour {
 	public Light light;
 	public bool lightIsOn = false; 
 
-	public bool responderIsStarted = false;
+	private bool responderIsStarted = false;
 
 
 	void Respond(){
@@ -48,7 +48,7 @@ public class Responder : MonoBehaviour {
 	void Start () {
 		lightIsOn = false;
 		responderIsStarted = true;
-		Task task = new Task (async() => respond());
+		Task task = new Task (async() => Respond());
 		task.Start ();
 	}
 	
